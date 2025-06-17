@@ -31,7 +31,7 @@ export default function Editor({ note }) {
     }
   };
 
-  // 🧠 Auto-save after 2 seconds of inactivity
+  // Auto-save after 2 seconds of inactivity
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
       if (

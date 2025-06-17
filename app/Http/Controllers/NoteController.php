@@ -33,7 +33,7 @@ class NoteController extends Controller
 		]);
 
 		// ✅ Redirect instead of JSON
-		return redirect()->route('dashboard');
+		return redirect()->route('dashboard')->with('success', 'Note created.');
 	}
     public function edit(Note $note)
     {
@@ -53,12 +53,12 @@ class NoteController extends Controller
 		$note->update($validated);
 
 		// 🧠 If the request expects JSON (auto-save), return JSON
-		if ($request->wantsJson() || $request->header('X-Inertia') === 'true') {
+		if ($request->expectsJson()) {
 			return response()->json(['status' => 'saved']);
 		}
 
 		// 🖱️ Manual form save
-		return redirect()->route('dashboard');
+		return redirect()->route('dashboard')->with('success', 'Note updated.');
 	}
 
 
